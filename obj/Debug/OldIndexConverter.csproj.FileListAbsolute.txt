@@ -1,0 +1,10 @@
+D:\projects\ProjectPublicher_C#\OldIndexConverter\OldIndexConverter\bin\Debug\OldIndexConverter.exe.config
+D:\projects\ProjectPublicher_C#\OldIndexConverter\OldIndexConverter\bin\Debug\OldIndexConverter.exe
+D:\projects\ProjectPublicher_C#\OldIndexConverter\OldIndexConverter\bin\Debug\OldIndexConverter.pdb
+D:\projects\ProjectPublicher_C#\OldIndexConverter\OldIndexConverter\obj\Debug\OldIndexConverter.csprojAssemblyReference.cache
+D:\projects\ProjectPublicher_C#\OldIndexConverter\OldIndexConverter\obj\Debug\OldIndexConverter.Form1.resources
+D:\projects\ProjectPublicher_C#\OldIndexConverter\OldIndexConverter\obj\Debug\OldIndexConverter.Properties.Resources.resources
+D:\projects\ProjectPublicher_C#\OldIndexConverter\OldIndexConverter\obj\Debug\OldIndexConverter.csproj.GenerateResource.cache
+D:\projects\ProjectPublicher_C#\OldIndexConverter\OldIndexConverter\obj\Debug\OldIndexConverter.csproj.CoreCompileInputs.cache
+D:\projects\ProjectPublicher_C#\OldIndexConverter\OldIndexConverter\obj\Debug\OldIndexConverter.exe
+D:\projects\ProjectPublicher_C#\OldIndexConverter\OldIndexConverter\obj\Debug\OldIndexConverter.pdb
