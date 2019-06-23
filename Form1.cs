@@ -9,12 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using Microsoft.WindowsAPICodePack.Dialogs;
-using System.Resources;
+using System.IO;
 
 namespace OldIndexConverter {
     public partial class Form1 : Form {
 
         string lastPath;
+        string preHTML = @"<!doctype html><html><head><meta charset=""utf-8""><title>{0}</title></head><body><div id=""contenttable""><h3>{1}</h3><ol id=""listTOC"" style=""list-style-type:none"">";
+        //20190619-10-44-28
+        string afterHTML = @"</ol><div id=""UID"" class=""hided"" style=""display:none;"">{0}   #</div></div></body></html>";
 
         public Form1() {
             if (Properties.Settings.Default.LastImagePath != "")
@@ -33,6 +36,15 @@ namespace OldIndexConverter {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void конвертироватьToolStripMenuItem_Click(object sender, EventArgs e) {
+            List<string> verticalFiles = new List<string>();
+            if (folderPath.Text == "")
+            {
+                MessageBox.Show("Не выбрана папка с изображениями.\nПарсер не отработает вертикальные изображения!");
+            } else
+            {
+                verticalFiles = GetVerticals(folderPath.Text);
+            }
+
             string inputText = richTextBox1.Text;
             Litem[] tocArray;
             
@@ -43,17 +55,40 @@ namespace OldIndexConverter {
                 string[] delim = new string[] { "\r", "\n" };
                 string[] lines = inputText.Split(delim, StringSplitOptions.RemoveEmptyEntries);
                 tocArray = new Litem[lines.Length];
-                string newTOC = "";
+                string newTOC = String.Format(preHTML,projectNameBox.Text, projectNameBox.Text) + Environment.NewLine;
 
                 for (int i = 0; i < lines.Length; i++) {
-                    //Debug.WriteLine();
                     Litem litem = new Litem(lines[i]);
+                    litem.Check(verticalFiles);
                     tocArray[i] = litem;
                     newTOC += litem.GetHTMLView();
                 }
-                
+
+                newTOC += String.Format(afterHTML, DateTime.Now.ToString());
                 richTextBox1.Text = newTOC;
             }
+        }
+
+        private List<string> GetVerticals(string path)
+        {
+            List<string> files = new List<string>();
+            DirectoryInfo d = new DirectoryInfo(path);//Assuming Test is your Folder
+            FileInfo[] Files = d.GetFiles("*.*"); //Getting Text files
+            string sfx = "b";
+            foreach (FileInfo file in Files)
+            {
+                //if(file.Extension == Litem.imgExtention) { }
+                string shortName = file.Name.Substring(0, file.Name.LastIndexOf(file.Extension));
+                FileInfo fb = new FileInfo(Path.Combine(path, shortName + sfx + file.Extension));
+                Debug.WriteLine(fb.FullName);
+                if (fb.Extension != Litem.HTM_EXT && fb.Exists)
+                {
+                    Debug.WriteLine("EXIST!!");
+                    files.Add(file.Name);
+                }
+            }
+
+            return files;
         }
 
         /*
@@ -71,9 +106,9 @@ foreach(FileInfo file in Files )
             public static bool replaceNumeric;
             public static string headerTemplate = @"<br /><strong>{1}</strong><br />";
             public static string itemtemplate = @"<LI><A href=""{0}"">{1}</A></LI>";
-            public static string imgExtention = "png";
+            public static string imgExtention = ".png";
 
-            public static string HTM_EXT = "htm";
+            public static string HTM_EXT = ".htm";
             public string Link;
             public string Text = "";
             public bool isHeader = false;
@@ -91,6 +126,16 @@ foreach(FileInfo file in Files )
                     Link = args[1];
                 }
                 Link = CheckLink(Link);
+            }
+
+            public void Check(List<string> bfiles)
+            {
+                foreach (string bfile in bfiles)
+                {
+                    if(bfile == Link) {
+                        Link += ":vert";
+                    }
+                }
             }
 
             private string CheckLink(string link) {
@@ -122,6 +167,17 @@ foreach(FileInfo file in Files )
                 Properties.Settings.Default.Save();
             }
             
+        }
+
+        private void сохранитьTochtmToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.InitialDirectory = Properties.Settings.Default.LastImagePath;
+            saveFileDialog1.AddExtension = true;
+            saveFileDialog1.Filter = "htm files (*.htm)|*.htm";
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                File.WriteAllText(saveFileDialog1.FileName, richTextBox1.Text);
+            }
         }
     }
 }

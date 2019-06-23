@@ -1,0 +1,14 @@
+C:\Users\Алексей\Documents\work\convertor\IndexConvertor\bin\Release\OldIndexConverter.exe.config
+C:\Users\Алексей\Documents\work\convertor\IndexConvertor\bin\Release\OldIndexConverter.exe
+C:\Users\Алексей\Documents\work\convertor\IndexConvertor\bin\Release\OldIndexConverter.pdb
+C:\Users\Алексей\Documents\work\convertor\IndexConvertor\bin\Release\Microsoft.WindowsAPICodePack.dll
+C:\Users\Алексей\Documents\work\convertor\IndexConvertor\bin\Release\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\Алексей\Documents\work\convertor\IndexConvertor\bin\Release\Microsoft.WindowsAPICodePack.xml
+C:\Users\Алексей\Documents\work\convertor\IndexConvertor\bin\Release\Microsoft.WindowsAPICodePack.Shell.xml
+C:\Users\Алексей\Documents\work\convertor\IndexConvertor\obj\Release\OldIndexConverter.Form1.resources
+C:\Users\Алексей\Documents\work\convertor\IndexConvertor\obj\Release\OldIndexConverter.Properties.Resources.resources
+C:\Users\Алексей\Documents\work\convertor\IndexConvertor\obj\Release\OldIndexConverter.csproj.GenerateResource.cache
+C:\Users\Алексей\Documents\work\convertor\IndexConvertor\obj\Release\OldIndexConverter.csproj.CoreCompileInputs.cache
+C:\Users\Алексей\Documents\work\convertor\IndexConvertor\obj\Release\OldIndexConverter.csproj.CopyComplete
+C:\Users\Алексей\Documents\work\convertor\IndexConvertor\obj\Release\OldIndexConverter.exe
+C:\Users\Алексей\Documents\work\convertor\IndexConvertor\obj\Release\OldIndexConverter.pdb
